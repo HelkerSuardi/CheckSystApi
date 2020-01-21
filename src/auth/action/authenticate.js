@@ -1,14 +1,14 @@
 'use strict'
 
 const mongoose = require('mongoose')
-const FireFighter = mongoose.model('FireFighter')
+const Firefighter = mongoose.model('Firefighter')
 const authService = require('../service/auth-service')
 
 const authenticate = async (req, res) => {
     try {
         const { email, password } = req.body
 
-        const user = await FireFighter.findOne({
+        const user = await Firefighter.findOne({
             email: email
         }).exec()
 
@@ -39,3 +39,5 @@ const authenticate = async (req, res) => {
         })
     }
 }
+
+module.exports = authenticate
