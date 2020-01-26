@@ -3,6 +3,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const cors = require('cors')
 
 //Connect to DB
 require('./db')
@@ -32,6 +33,7 @@ const customRoutes = require('./src/router')
 
 const app = express()
 
+app.use(cors())
 app.use(bodyParser.json({ limit: '16mb', type: 'application/json' }))
 app.use(bodyParser.urlencoded({ limit: '16mb', extended: true }))
 app.use('/api', customRoutes)
