@@ -1,17 +1,9 @@
 'use strict'
 
 const mongoose = require('mongoose')
-const autopopulate = require('mongoose-autopopulate')
-const ObjectId = mongoose.Schema.Types.ObjectId
 
 const schema = new mongoose.Schema(
     {
-        vehicle: {
-            type: ObjectId,
-            ref: 'Vehicle',
-            autopopulate: true,
-            required: true
-        },
         name: {
             type: String,
             required: true
@@ -26,7 +18,6 @@ const schema = new mongoose.Schema(
         },
         quantity: {
             type: Number,
-            required: true
         },
         type: {
             type: String,
@@ -35,7 +26,6 @@ const schema = new mongoose.Schema(
         },
         status: {
             type: String,
-            required: true,
             enum: ['OK', 'NOK']
         },
         observations: String,        
@@ -44,7 +34,5 @@ const schema = new mongoose.Schema(
         timestamps: true
     }
 )
-
-schema.plugin(autopopulate)
 
 module.exports = mongoose.model('ItemEquip', schema)
