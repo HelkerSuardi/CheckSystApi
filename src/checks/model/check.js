@@ -4,6 +4,15 @@ const mongoose = require('mongoose')
 const autopopulate = require('mongoose-autopopulate')
 const ObjectId = mongoose.Schema.Types.ObjectId
 
+const itemSchema = new mongoose.Schema({
+    item: {
+        type: ObjectId,
+        ref: 'ItemEquip',
+        autopopulate: true
+    },
+    quantity: Number
+})
+
 const schema = new mongoose.Schema(
     {
         firefighter: {
@@ -19,9 +28,10 @@ const schema = new mongoose.Schema(
             required: true
         },
         date: {
-            type: Date,
+            type: String,
             required: true
         },
+        itemsEquips: [itemSchema],
         status: {
             type: String,
             enum: ['OK', 'NOK']
