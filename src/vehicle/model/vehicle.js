@@ -9,7 +9,8 @@ const itemSchema = new mongoose.Schema({
         type: ObjectId,
         ref: 'ItemEquip',
         autopopulate: true
-    }
+    },
+    quantity: Number
 })
 
 const schema = new mongoose.Schema(
