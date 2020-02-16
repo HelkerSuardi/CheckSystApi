@@ -1,8 +1,8 @@
 'use strict';
 
 const jwt = require('jsonwebtoken');
-const jwtTokenSecret = process.env.JWT_TOKEN_SECRET;
-const jwtTokenExpiration = process.env.JWT_TOKEN_EXPIRE;
+const jwtTokenSecret = process.env.CHS_DEVELOPMENT_JWT_TOKEN_SECRET;
+const jwtTokenExpiration = process.env.JWT_TOKEN_EXPIRE || '1d';
 
 exports.generateToken = async data => {
   return jwt.sign(data, jwtTokenSecret, { expiresIn: jwtTokenExpiration });
@@ -20,7 +20,7 @@ exports.authorize = function(req, res, next) {
   if (!token) {
     res.status(401).json({
       message: 'Acesso restrito.',
-    });
+    }); 
   } else {
     jwt.verify(token, jwtTokenSecret, function(error, decoded) {
       if (error) {
