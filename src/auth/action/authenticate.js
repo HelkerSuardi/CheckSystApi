@@ -18,6 +18,12 @@ const authenticate = async (req, res) => {
             })
         }
 
+        if (user.role === 'operator') {
+            res.status(405).send({
+                message: 'Você não tem as permissões necessárias!'
+            })
+        }        
+
         const token = await authService.generateToken({
             id: user._id,
             name: user.name,
@@ -30,7 +36,8 @@ const authenticate = async (req, res) => {
             data: {
                 _id: user._id,
                 email: user.email,
-                name: user.name
+                name: user.name,
+                role: user.role
             }
         })
     } catch (e) {
