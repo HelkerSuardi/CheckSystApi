@@ -24,7 +24,7 @@ const schema = new mongoose.Schema(
             required: true,
             unique: true
         },
-        item: [itemSchema]
+        itemsEquips: [itemSchema]
     },
     {
         timestamps: true
