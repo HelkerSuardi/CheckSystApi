@@ -10,7 +10,13 @@ const itemSchema = new mongoose.Schema({
         ref: 'ItemEquip',
         autopopulate: true
     },
-    quantity: Number
+    quantity: Number,
+    status: {
+        type: Boolean,
+        default: null
+    },
+    motive: String,
+    justify: String
 })
 
 const schema = new mongoose.Schema(
@@ -34,7 +40,7 @@ const schema = new mongoose.Schema(
         itemsEquips: [itemSchema],
         status: {
             type: String,
-            enum: ['OK', 'NOK']
+            enum: ['OK', 'NOK', 'NOTDONE']
         }
     },
     {
