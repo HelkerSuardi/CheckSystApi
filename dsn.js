@@ -1,5 +1,5 @@
 'use strict'
 
-let DSN = 'mongodb://localhost:27017/checkSyst'
+let DSN = process.env.CHS_CI_MONGO_URL
 
 module.exports = DSN
