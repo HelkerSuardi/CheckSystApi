@@ -10,9 +10,9 @@ const vehicle = require('./vehicle/router')
 const itemEquip = require('./item-equips/router')
 
 router.use('/firefighters', firefighter)
-router.use('/checks', check)
-router.use('/vehicles', vehicle)
-router.use('/item-equips', itemEquip)
+router.use('/checks', authService.authorize, check)
+router.use('/vehicles', authService.authorize, vehicle)
+router.use('/item-equips', authService.authorize, itemEquip)
 router.use('/auth', auth)
 
 module.exports = router

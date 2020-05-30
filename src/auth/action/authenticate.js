@@ -16,12 +16,6 @@ const authenticate = async (req, res) => {
             return res.status(404).send({
                 message: 'Usuário ou senha incorretos!'
             })
-        }
-
-        if (user.role === 'operator') {
-            res.status(405).send({
-                message: 'Você não tem as permissões necessárias!'
-            })
         }        
 
         const token = await authService.generateToken({
