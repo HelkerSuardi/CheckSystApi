@@ -41,4 +41,4 @@ app.use('/api', (req, res, next) => {
     next()
     }, routes )
 
-app.listen(3002)
+app.listen(process.env.PORT || 3002)
