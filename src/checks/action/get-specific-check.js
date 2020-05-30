@@ -10,7 +10,7 @@ const getSpecificCheck = async (req, res) => {
 
     const check = await Check.find({
         firefighter: userId,
-        date: { $gte: startOfDay, $lte: endOfDay }
+        date: { $gte: startOfDay.toISOString(), $lte: endOfDay.toISOString() }
     })
 
     res.send(check)

@@ -40,7 +40,8 @@ const schema = new mongoose.Schema(
         itemsEquips: [itemSchema],
         status: {
             type: String,
-            enum: ['OK', 'NOK', 'NOTDONE']
+            enum: ['OK', 'NOK', 'NOTDONE'],
+            default: 'NOTDONE'
         }
     },
     {
@@ -49,5 +50,17 @@ const schema = new mongoose.Schema(
 )
 
 schema.plugin(autopopulate)
+
+schema.pre('save', function() {
+    if (this.itemsEquips.length > 0) {
+        const isAnyIncomplete = this.itemsEquips.some(item => { return item.status === false })
+
+        if (isAnyIncomplete) {
+            this.status = 'NOK'
+        } else {
+            this.status = 'OK'
+        }
+    }
+})
 
 module.exports = mongoose.model('Check', schema)
