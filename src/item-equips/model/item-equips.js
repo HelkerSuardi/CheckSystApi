@@ -35,4 +35,20 @@ const schema = new mongoose.Schema(
     }
 )
 
+schema.statics.ApiPack = function() {
+    return {
+        pagination: {
+            itemsPerPage: 10,
+            clientEnabled: true,
+        },
+        filters: {
+            search:{
+                properties:{
+                    name: 'ipartial'
+                }
+            },        
+        }
+    };
+};
+
 module.exports = mongoose.model('ItemEquip', schema)

@@ -49,6 +49,15 @@ const schema = new mongoose.Schema(
     }
 )
 
+schema.statics.ApiPack = function() {
+    return {
+        pagination: {
+            itemsPerPage: 10,
+            clientEnabled: true,
+        }        
+    };
+};
+
 schema.plugin(autopopulate)
 
 schema.pre('save', function() {

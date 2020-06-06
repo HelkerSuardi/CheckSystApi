@@ -31,6 +31,28 @@ const schema = new mongoose.Schema(
     }
 )
 
+schema.statics.ApiPack = function() {
+    return {
+      pagination: {
+        itemsPerPage: 10,
+        clientEnabled: true,
+      },
+      filters: {
+        search:{
+            properties:{
+                name: 'ipartial'
+            }
+        },
+        order: {
+            properties: {
+                createdAt: 'asc',
+            },
+        }
+      },
+      
+    };
+  }; 
+
 schema.plugin(autopopulate)
 
 module.exports = mongoose.model('Vehicle', schema)
