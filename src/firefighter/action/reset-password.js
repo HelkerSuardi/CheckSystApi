@@ -34,6 +34,8 @@ const sendEmail = (newPassword, userEmail) => {
     };
 
     transporter.sendMail(mailOptions, function(error, info){
+        console.log({info})
+        console.log({error})
         if (error) {
           throw new Error ('Failed to send e-mail.')
         }
