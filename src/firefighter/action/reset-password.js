@@ -27,15 +27,13 @@ const sendEmail = (newPassword, userEmail) => {
     });
 
     const mailOptions = {
-        from: 'checksystmailer@gmail.com',
+        from: chsEmail,
         to: userEmail,
         subject: 'Redefinição de senha.',
         text: `A sua nova senha de acesso é ${newPassword}.`
     };
 
     transporter.sendMail(mailOptions, function(error, info){
-        console.log({info})
-        console.log({error})
         if (error) {
           throw new Error ('Failed to send e-mail.')
         }
