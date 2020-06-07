@@ -62,6 +62,7 @@ schema.plugin(autopopulate)
 
 schema.pre('save', function() {
     if (this.itemsEquips.length > 0) {
+        console.log(itemsEquips)
         const isAnyIncomplete = this.itemsEquips.some(item => { return item.status === false })
 
         if (isAnyIncomplete) {
