@@ -61,15 +61,22 @@ schema.statics.ApiPack = function() {
 schema.plugin(autopopulate)
 
 schema.pre('save', function() {
+    if(this.isNew) {
+        return
+    }
+    
     if (this.itemsEquips.length > 0) {
-        console.log(itemsEquips)
         const isAnyIncomplete = this.itemsEquips.some(item => { return item.status === false })
-
+        const isAnyNull = this.itemsEquips.some(item => { return item.status === null })
+        
         if (isAnyIncomplete) {
             this.status = 'NOK'
+        } else if (isAnyNull) {
+            this.status = 'NOTDONE'
         } else {
             this.status = 'OK'
         }
+        
     }
 })
 
